@@ -1,3 +1,4 @@
+
 name: Program 19 Autograding
 
 on:
@@ -44,7 +45,11 @@ jobs:
 
       - name: Check student image
         run: |
-          grep -qi "student.jpg" src/pages/Home.js
+          grep -Eqi 'student\.(jpg|jpeg|png)' src/pages/Home.js
+
+      - name: Check student image file exists
+        run: |
+          test -f public/Student.png
 
       - name: Run test cases
         run: CI=true npm test -- --watchAll=false
